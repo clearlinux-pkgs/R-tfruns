@@ -4,7 +4,7 @@
 #
 Name     : R-tfruns
 Version  : 1.4
-Release  : 2
+Release  : 3
 URL      : https://cran.r-project.org/src/contrib/tfruns_1.4.tar.gz
 Source0  : https://cran.r-project.org/src/contrib/tfruns_1.4.tar.gz
 Summary  : Training Run Tools for 'TensorFlow'
