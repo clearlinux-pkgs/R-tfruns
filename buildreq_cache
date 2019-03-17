@@ -1,5 +1,7 @@
 1.4
+R-assertthat
 R-base64enc
+R-cli
 R-config
 R-jsonlite
 R-mime
@@ -8,3 +10,4 @@ R-rlang
 R-rstudioapi
 R-tidyselect
 R-whisker
+R-withr
