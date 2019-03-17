@@ -1,6 +1,8 @@
 1.4
+R-base64enc
 R-config
 R-jsonlite
+R-mime
 R-reticulate
 R-rlang
 R-rstudioapi

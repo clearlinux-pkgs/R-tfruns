@@ -4,21 +4,18 @@
 #
 Name     : R-tfruns
 Version  : 1.4
-Release  : 4
+Release  : 5
 URL      : https://cran.r-project.org/src/contrib/tfruns_1.4.tar.gz
 Source0  : https://cran.r-project.org/src/contrib/tfruns_1.4.tar.gz
 Summary  : Training Run Tools for 'TensorFlow'
 Group    : Development/Tools
 License  : Apache-2.0
-Requires: R-config
-Requires: R-jsonlite
-Requires: R-reticulate
-Requires: R-rlang
-Requires: R-rstudioapi
-Requires: R-tidyselect
-Requires: R-whisker
+Requires: R-base64enc
+Requires: R-mime
+BuildRequires : R-base64enc
 BuildRequires : R-config
 BuildRequires : R-jsonlite
+BuildRequires : R-mime
 BuildRequires : R-reticulate
 BuildRequires : R-rlang
 BuildRequires : R-rstudioapi
@@ -27,9 +24,10 @@ BuildRequires : R-whisker
 BuildRequires : buildreq-R
 
 %description
-training run. Provides a unique, time stamped directory for each run
-  along with functions to retrieve the directory of the latest run or 
-  latest several runs.
+tfruns: Track, Visualize, and Manage Training Runs
+================
+Overview
+--------
 
 %prep
 %setup -q -c -n tfruns
@@ -39,10 +37,10 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C
-export SOURCE_DATE_EPOCH=1541773465
+export SOURCE_DATE_EPOCH=1552845068
 
 %install
-export SOURCE_DATE_EPOCH=1541773465
+export SOURCE_DATE_EPOCH=1552845068
 rm -rf %{buildroot}
 export LANG=C
 export CFLAGS="$CFLAGS -O3 -flto -fno-semantic-interposition "
@@ -78,8 +76,7 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export _R_CHECK_FORCE_SUGGESTS_=false
-R CMD check --no-manual --no-examples --no-codoc -l %{buildroot}/usr/lib64/R/library tfruns|| : 
-cp ~/.stash/* %{buildroot}/usr/lib64/R/library/*/libs/ || :
+R CMD check --no-manual --no-examples --no-codoc  tfruns || :
 
 
 %files
@@ -115,6 +112,23 @@ cp ~/.stash/* %{buildroot}/usr/lib64/R/library/*/libs/ || :
 /usr/lib64/R/library/tfruns/html/00Index.html
 /usr/lib64/R/library/tfruns/html/R.css
 /usr/lib64/R/library/tfruns/rstudio/addins.dcf
+/usr/lib64/R/library/tfruns/tests/testthat.R
+/usr/lib64/R/library/tfruns/tests/testthat/extra.dat
+/usr/lib64/R/library/tfruns/tests/testthat/flags-learning-rate.yml
+/usr/lib64/R/library/tfruns/tests/testthat/flags-override.yml
+/usr/lib64/R/library/tfruns/tests/testthat/flags-profile-override.yml
+/usr/lib64/R/library/tfruns/tests/testthat/flags.rds
+/usr/lib64/R/library/tfruns/tests/testthat/metrics.rds
+/usr/lib64/R/library/tfruns/tests/testthat/subdir/extra.dat
+/usr/lib64/R/library/tfruns/tests/testthat/test-copy.R
+/usr/lib64/R/library/tfruns/tests/testthat/test-flags.R
+/usr/lib64/R/library/tfruns/tests/testthat/test-run-data.R
+/usr/lib64/R/library/tfruns/tests/testthat/test-runs.R
+/usr/lib64/R/library/tfruns/tests/testthat/test-tuning.R
+/usr/lib64/R/library/tfruns/tests/testthat/train-error.R
+/usr/lib64/R/library/tfruns/tests/testthat/train.R
+/usr/lib64/R/library/tfruns/tests/testthat/utils.R
+/usr/lib64/R/library/tfruns/tests/testthat/write_run_data.R
 /usr/lib64/R/library/tfruns/views/compare_runs.html
 /usr/lib64/R/library/tfruns/views/components/c3.html
 /usr/lib64/R/library/tfruns/views/components/dashboard.html
