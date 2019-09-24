@@ -4,31 +4,38 @@
 #
 Name     : R-tfruns
 Version  : 1.4
-Release  : 12
+Release  : 13
 URL      : https://cran.r-project.org/src/contrib/tfruns_1.4.tar.gz
 Source0  : https://cran.r-project.org/src/contrib/tfruns_1.4.tar.gz
 Summary  : Training Run Tools for 'TensorFlow'
 Group    : Development/Tools
 License  : Apache-2.0
-BuildRequires : R-assertthat
+Requires: R-base64enc
+Requires: R-config
+Requires: R-jsonlite
+Requires: R-magrittr
+Requires: R-reticulate
+Requires: R-rlang
+Requires: R-rstudioapi
+Requires: R-tidyselect
+Requires: R-whisker
+Requires: R-yaml
 BuildRequires : R-base64enc
-BuildRequires : R-cli
 BuildRequires : R-config
 BuildRequires : R-jsonlite
-BuildRequires : R-mime
+BuildRequires : R-magrittr
 BuildRequires : R-reticulate
 BuildRequires : R-rlang
 BuildRequires : R-rstudioapi
 BuildRequires : R-tidyselect
 BuildRequires : R-whisker
-BuildRequires : R-withr
+BuildRequires : R-yaml
 BuildRequires : buildreq-R
 
 %description
-tfruns: Track, Visualize, and Manage Training Runs
-================
-Overview
---------
+training run. Provides a unique, time stamped directory for each run
+  along with functions to retrieve the directory of the latest run or 
+  latest several runs.
 
 %prep
 %setup -q -c -n tfruns
@@ -37,13 +44,13 @@ Overview
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
-export LANG=C
-export SOURCE_DATE_EPOCH=1552927871
+export LANG=C.UTF-8
+export SOURCE_DATE_EPOCH=1569295458
 
 %install
-export SOURCE_DATE_EPOCH=1552927871
+export SOURCE_DATE_EPOCH=1569295458
 rm -rf %{buildroot}
-export LANG=C
+export LANG=C.UTF-8
 export CFLAGS="$CFLAGS -O3 -flto -fno-semantic-interposition "
 export FCFLAGS="$CFLAGS -O3 -flto -fno-semantic-interposition "
 export FFLAGS="$CFLAGS -O3 -flto -fno-semantic-interposition "
@@ -72,12 +79,12 @@ R CMD INSTALL --preclean --install-tests --built-timestamp=${SOURCE_DATE_EPOCH} 
 cp ~/.stash/* %{buildroot}/usr/lib64/R/library/*/libs/ || :
 %{__rm} -rf %{buildroot}%{_datadir}/R/library/R.css
 %check
-export LANG=C
+export LANG=C.UTF-8
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export _R_CHECK_FORCE_SUGGESTS_=false
-R CMD check --no-manual --no-examples --no-codoc  tfruns || :
+R CMD check --no-manual --no-examples --no-codoc tfruns || :
 
 
 %files
